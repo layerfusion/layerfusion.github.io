@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description"
+        content="LayerFusion is a layered generation pipeline with RGBA foreground and RGB background.">
+        <meta name="keywords" content="Diffusion Models, Latent Space Exploration">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <script src="https://www.w3counter.com/tracker.js?id=151390"></script> -->
+        <title>LayerFusion</title>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+        dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-PYVRSFMDRL');
+        </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+    </head>
+
+    <body>
+        <section class="hero is-light">
+            <div class="hero-body">
+              <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                  <div class="column has-text-centered">
+                    <h1 class="title is-1 publication-title">LayerFusion: Harmonized Multi-Layer Text-to-Image Generation with Generative Priors</h1>
+                    <div class="is-size-5 publication-authors">
+                        <span class="author-block">
+                            <a href="https://yusufdalva.github.io/">Yusuf Dalva<sup>1</sup></a>,</span>
+                        <span class="author-block">
+                            <a href="https://yijunmaverick.github.io/">Yijun Li<sup>2</sup></a>,</span>
+                        <span class="author-block">
+                            <a href="https://qliu24.github.io/">Qing Liu<sup>2</sup></a>,</span>
+                        <span class="author-block">
+                            <a href="http://nxzhao.com/">Nanxuan Zhao<sup>2</sup></a>,</span>
+                        <span class="author-block">
+                            <a href="https://jimmie33.github.io/">Jianming Zhang<sup>2</sup></a>,</span>
+                        <span class="author-block">
+                            <a href="https://sites.google.com/site/zhelin625/home">Zhe Lin<sup>2</sup></a>,</span>
+                        <span class="author-block">
+                            <a href="https://pinguar.org/">Pinar Yanardag<sup>1</sup></a>
+                      </span>
+                    </div>
+          
+                    <div class="is-size-5 publication-authors">
+                      <span class="author-block">Virginia Tech<sup>1</sup>,</span>
+                      <span class="author-block">Adobe Inc.<sup>2</sup></span>
+                    </div>
+
+                    <div class="column has-text-centered">
+                        <div class="publication-links">
+      
+                          <span class="link-block">
+                            <a href="https://arxiv.org/abs/2312.05390"
+                               class="external-link button is-normal is-rounded is-dark">
+                              <span class="icon">
+                                  <i class="fas fa-file-pdf"></i>
+                              </span>
+                              <span>Paper</span>
+                            </a>
+                          </span>
+      
+                          <span class="link-block">
+                            <a href=""
+                               class="external-link button is-normal is-rounded is-dark">
+                              <span class="icon">
+                                  <i class="fab fa-github"></i>
+                              </span>
+                              <span>Code (coming soon)</span>
+                              </a>
+                          </span>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="hero teaser">
+            <div class="container is-max-desktop">
+              <div class="hero-body">
+                <h4 class="subtitle">
+                    <br>
+                    <b>TL;DR</b> LayerFusion introduces a harmonized text-to-image generation framework that dynamically generates foreground (RGBA), background (RGB), 
+                    and blended images simultaneously, enabling seamless layer interactions without additional training.
+                    <!--
+                    <span class="dnerf">NoiseCLR</span> discovers semantic directions in latent diffusion models in a completely unsupervised manner. 
+                    With this work, we present latent directions discovered in domains such as Art, Fashion, Face, Cats and Cars in Stable Diffusion. -->
+                </h4>
+                <div class="container">
+                    <img src="./static/images/teaser.png" />
+                    <br/>
+                    <p>
+                        We propose a framework for generating a foreground (RGBA), background (RGB) and blended (RGB) image simultaneously from an input text prompt. 
+                        By introducing an optimization-free blending approach that targets the attention layers, we introduce an interaction mechanism between the image layers (i.e., 
+                        foreground and background) to achieve harmonization during blending. Furthermore, as our framework benefits from the layered representations, it enables performing 
+                        spatial editing with the generated image layers in a straight-forward manner.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section hero is-light">
+            <div class="container is-max-desktop">
+              <!-- Abstract. -->
+              <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                  <h2 class="title is-3">Abstract</h2>
+                  <div class="content has-text-justified">
+                    <p>
+                        Large-scale diffusion models have achieved remarkable success in generating high-quality images from textual descriptions, gaining popularity across various applications. 
+                        However, the generation of layered content, such as transparent images with foreground and background layers, remains an under-explored area. Layered content generation is 
+                        crucial for creative workflows in fields like graphic design, animation, and digital art, where layer-based approaches are fundamental for flexible editing and composition. 
+                        In this paper, we propose a novel image generation pipeline based on Latent Diffusion Models (LDMs) that generates images with two layers: a foreground layer (RGBA) with 
+                        transparency information and a background layer (RGB). Unlike existing methods that generate these layers sequentially, our approach introduces a harmonized generation mechanism 
+                        that enables dynamic interactions between the layers for more coherent outputs. We demonstrate the effectiveness of our method through extensive qualitative and quantitative experiments, 
+                        showing significant improvements in visual coherence, image quality, and layer consistency compared to baseline methods.
+                    </p>
+                  </div>
+                </div>
+              </div>
+        </section>
+
+        <section class="section hero">
+            <div class="container is-max-desktop">
+              <div class="columns is-centered has-text-centered">
+                <div class="column is-12">
+                  <h2 class="title is-3">Method</h2>
+        
+                  <div class="content has-text-justified">
+                    <!--
+                    <p>
+                     Explain method
+                    </p>
+                  -->
+                    <div class="container">
+                      <img src="./static/images/framework.png" />
+                      <br />
+                    </div>
+        
+                    <p>
+                        By making use of the generative priors extracted from transparent generation model &straightepsilon;<sub>&theta;, FG</sub>, LayerFusion is able to generate image triplets consisting a foreground (RGBA), 
+                        a background, and a blended image. Our framework involves three fundamental components that are connected with each other. First we introduce a prior pass on &straightepsilon;<sub>&theta;, FG</sub> (a) 
+                        for extracting the <b>structure prior</b>, and then introduce an attention-level interaction between two denoising networks (&straightepsilon;<sub>&theta;, FG</sub> and &straightepsilon;<sub>&theta;</sub>) (b), with an attention 
+                        level blending scheme with layer-wise <b>content confidence prior</b>, combined with the <b>structure prior</b> (c). 
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="container is-max-desktop">
+                <h1 class="title is-3 has-text-centered">Masks as Generative Priors</h1>
+              <div class="columns is-centered has-text-centered">
+                <div class="column is-12">
+        
+                  <div class="content has-text-justified">
+                    <!--
+                    <p>
+                     Explain method
+                    </p>
+                  -->
+                  <div class="container">
+                    <img src="./static/images/masks_attn.png" />
+                    <br />
+                  </div>
+                  <p>
+                      As we observe through consecutive layers of foreground diffusion model &straightepsilon;<sub>&theta;, FG</sub>, towards final layers, attention layers highlight the object structure
+                  </p>
+
+                    <div class="container">
+                      <img src="./static/images/masks.png" />
+                      <br />
+                    </div>
+                    <p>
+                        By combining the structure and content confidence priors, LayerFusion can enable harmonization across layers, where the composite masks can encode vital information such as transparency.
+                    </p>
+                </div>
+              </div>
+            </div>
+          </section>
+              
+        
+          <section class="section">
+            <div class="container is-max-desktop">
+                <h1 class="title is-3 has-text-centered">Generation Results</h1>
+              <div class="columns is-centered has-text-centered">
+                <div class="column is-12">
+        
+                  <div class="content has-text-justified">
+                    <!--
+                    <p>
+                     Explain method
+                    </p>
+                  -->
+                    <h4 class="title is-4 has-text-centered">Generations on Different Visual Concepts</h4>
+
+                    <div class="container">
+                      <img src="./static/images/qualitative.png" />
+                      <br />
+                    </div>
+                    <p class="has-text-centered">
+                        <i>LayerFusion</i> can generate image triplets with RGBA foreground, RGB blending and background with different visual concepts.
+                    </p>
+
+                    <h4 class="title is-4 has-text-centered">Generations with Stylization Prompts</h4>
+
+                    <div class="container">
+                      <img src="./static/images/style.png" />
+                      <br />
+                    </div>
+                    <p class="has-text-centered">
+                        <i>LayerFusion</i> can harmonize foreground and background layers by staying faithful to styling conditions.
+                    </p>
+
+                    <h4 class="title is-4 has-text-centered">Generations on Different Background Conditions</h4>
+
+                    <div class="container">
+                      <img src="./static/images/person_cond.png" />
+                      <br />
+                    </div>
+                    <p class="has-text-centered">
+                        With the information shared between foreground and background layers <i>LayerFusion</i> can modify the appearance of each layer so that they will be compatible with each other.
+                    </p>
+
+                    <h4 class="title is-4 has-text-centered">Generations with Transparent Foregrounds</h4>
+
+                    <div class="container">
+                      <img src="./static/images/transparent.png" />
+                      <br />
+                    </div>
+                    <p class="has-text-centered">
+                        During blending <i>LayerFusion</i> preserves the transparency of the foreground objects.
+                    </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section" id="BibTeX">
+            <div class="container is-max-desktop content">
+              <h2 class="title">BibTeX</h2>
+              <pre><code>
+  @misc{dalva2024layerfusion,
+    title={LayerFusion: Harmonized Multi-Layer Text-to-Image Generation with Generative Priors}, 
+    author={Yusuf Dalva and Yijun Li and Qing Liu and Nanxuan Zhao and Jianming Zhang and Zhe Lin and Pinar Yanardag},
+    year={2024},
+    eprint={TBD},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+  }
+              </code></pre>
+            </div>
+          </section>
+
+          <footer class="footer">
+            <div class="container">
+              <div class="content has-text-centered is-centered">
+                <a class="icon-link" href="https://github.com/yusufdalva" class="external-link" disabled>
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
+              <div class="columns">
+                <div class="column is-8">
+                  <div class="content has-text-justified">
+                    <!-- <p>
+                      This website is licensed under a <a rel="license"
+                                                          href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                      Commons Attribution-ShareAlike 4.0 International License</a>.
+                    </p> -->
+                    <p>This page is adapted from <a
+                        href="https://github.com/nerfies/nerfies.github.io">this</a> implementation.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+    </body>
+</html>
